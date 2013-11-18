@@ -1,0 +1,26 @@
+body {
+	padding: 0;
+	margin: 0;
+	font-family: 'Sintony', sans-serif;
+	font-size: 14px;
+	color: #404040;
+	background: url('../../../img/header_bg.png') repeat-x #ebeaea;
+}
+
+#conHeaderBar {
+	background: url('../../../img/header_bar.png') repeat-x;
+	height: 7px;
+}
+
+#conHeader {
+	min-height: 260px;
+}
+
+#conHeader .btn {
+	margin-left: 15px;
+}
+
+#conBody {
+	text-align: left;
+	padding-top: 20px;
+}

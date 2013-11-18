@@ -1,0 +1,2507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>API Documentation</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+    <![endif]-->
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    <script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
+
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
+
+            pre.textContent = '';
+
+            code.textContent = 'Loading…';
+
+            pre.appendChild(code);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', src, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
+
+                        Prism.highlightElement(code);
+                    }
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist or is empty';
+                    }
+                }
+            };
+
+            xhr.send(null);
+        });
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">API Documentation</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                    <li class="dropdown">
+                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
+                            API Documentation <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                                                        <li><a href="../namespaces/Xily.html">\Xily</a></li>
+                                                    </ul>
+                    </li>
+                    <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                    <i class="icon-list-alt"></i>&#160;Errors
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                    <i class="icon-list-alt"></i>&#160;Markers
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1657303891"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-1657303891" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-545507856"></a>
+                                <a href="../namespaces/Xily.html" style="margin-left: 30px; padding-left: 0">Xily</a>
+            </div>
+            <div id="namespace-545507856" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Xily.Dict.html">Dict</a></li>
+                                                    <li class="class"><a href="../classes/Xily.Config.html">Config</a></li>
+                                                    <li class="class"><a href="../classes/Xily.Base.html">Base</a></li>
+                                                    <li class="class"><a href="../classes/Xily.Bean.html">Bean</a></li>
+                                                    <li class="class"><a href="../classes/Xily.Exception.html">Exception</a></li>
+                                                    <li class="class"><a href="../classes/Xily.Xml.html">Xml</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <nav>
+                                                <a href="../namespaces/Xily.html">\Xily</a> <i class="icon-level-up"></i>
+                                            </nav>
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+
+                    <h1><small>\Xily</small>Dict</h1>
+                    <p><em>The Dictionary class provides some useful functions when working with arrays.</em></p>
+                    <p>In order to avoid errors, I would suggest to pack most assoc. arrays you
+are using in this class</p>
+
+
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span4">
+                                <a href="#methods">Methods</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#constants">Constants</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span4">
+                                                                    <a href="../classes/Xily.Dict.html#method___construct" class="">__construct()</a><br />
+                                                                    <a href="../classes/Xily.Dict.html#method_merge" class="">merge()</a><br />
+                                                                    <a href="../classes/Xily.Dict.html#method_add" class="">add()</a><br />
+                                                                    <a href="../classes/Xily.Dict.html#method_push" class="">push()</a><br />
+                                                                    <a href="../classes/Xily.Dict.html#method_addOptions" class="">addOptions()</a><br />
+                                                                    <a href="../classes/Xily.Dict.html#method_set" class="">set()</a><br />
+                                                                    <a href="../classes/Xily.Dict.html#method_get" class="">get()</a><br />
+                                                                    <a href="../classes/Xily.Dict.html#method_getFiltered" class="">getFiltered()</a><br />
+                                                                    <a href="../classes/Xily.Dict.html#method_getClear" class="">getClear()</a><br />
+                                                                    <a href="../classes/Xily.Dict.html#method_has" class="">has()</a><br />
+                                                                    <a href="../classes/Xily.Dict.html#method_count" class="">count()</a><br />
+                                                                    <a href="../classes/Xily.Dict.html#method_erase" class="">erase()</a><br />
+                                                                    <a href="../classes/Xily.Dict.html#method_addCSV" class="">addCSV()</a><br />
+                                                                    <a href="../classes/Xily.Dict.html#method_parseCsv" class="">parseCsv()</a><br />
+                                                                    <a href="../classes/Xily.Dict.html#method_implode" class="">implode()</a><br />
+                                                                    <a href="../classes/Xily.Dict.html#method_insertInto" class="">insertInto()</a><br />
+                                                                    <a href="../classes/Xily.Dict.html#method_toXml" class="">toXml()</a><br />
+                                                                    <a href="../classes/Xily.Base.html#method_initValue" class="">initValue()</a><br />
+                                                                    <a href="../classes/Xily.Base.html#method_initRequest" class="">initRequest()</a><br />
+                                                                    <a href="../classes/Xily.Base.html#method_equationBuild" class="">equationBuild()</a><br />
+                                                                    <a href="../classes/Xily.Base.html#method_equationCheck" class="">equationCheck()</a><br />
+                                                                    <a href="../classes/Xily.Base.html#method_strStripQuotes" class="">strStripQuotes()</a><br />
+                                                                    <a href="../classes/Xily.Base.html#method_strStripBrackets" class="">strStripBrackets()</a><br />
+                                                                    <a href="../classes/Xily.Base.html#method_strStripString" class="">strStripString()</a><br />
+                                                                    <a href="../classes/Xily.Base.html#method_strStripWhitespaces" class="">strStripWhitespaces()</a><br />
+                                                                    <a href="../classes/Xily.Base.html#method_strStripInline" class="">strStripInline()</a><br />
+                                                                    <a href="../classes/Xily.Base.html#method_strShorten" class="">strShorten()</a><br />
+                                                                    <a href="../classes/Xily.Base.html#method_strToFloat" class="">strToFloat()</a><br />
+                                                                    <a href="../classes/Xily.Base.html#method_htmlDecode" class="">htmlDecode()</a><br />
+                                                                    <a href="../classes/Xily.Base.html#method_htmlEncode" class="">htmlEncode()</a><br />
+                                                                    <a href="../classes/Xily.Base.html#method_xmlChars" class="">xmlChars()</a><br />
+                                                                    <a href="../classes/Xily.Base.html#method_createUID" class="">createUID()</a><br />
+                                                                    <a href="../classes/Xily.Base.html#method_fileFormatDir" class="">fileFormatDir()</a><br />
+                                                                    <a href="../classes/Xily.Base.html#method_fileRead" class="">fileRead()</a><br />
+                                                                    <a href="../classes/Xily.Base.html#method_fileReadByLine" class="">fileReadByLine()</a><br />
+                                                                    <a href="../classes/Xily.Base.html#method_fileWrite" class="">fileWrite()</a><br />
+                                                                    <a href="../classes/Xily.Base.html#method_fileRemoveDir" class="">fileRemoveDir()</a><br />
+                                                                    <a href="../classes/Xily.Base.html#method_fileCopyDir" class="">fileCopyDir()</a><br />
+                                                                    <a href="../classes/Xily.Base.html#method_fileListDir" class="">fileListDir()</a><br />
+                                                                    <a href="../classes/Xily.Base.html#method_fileGetExtension" class="">fileGetExtension()</a><br />
+                                                                    <a href="../classes/Xily.Base.html#method_fileRename" class="">fileRename()</a><br />
+                                                                    <a href="../classes/Xily.Base.html#method_probe" class="">probe()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/Xily.Dict.html#property_data" class="">$data</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No constants found</em>
+                                                            </section>
+                        </section>
+                        <section class="row-fluid protected">
+                            <section class="span4">
+                                                                    <em>No protected methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No protected properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span4">
+                                                                    <a href="../classes/Xily.Dict.html#method_getFromPath" class="">getFromPath()</a><br />
+                                                                    <a href="../classes/Xily.Dict.html#method_getValue" class="">getValue()</a><br />
+                                                                    <a href="../classes/Xily.Dict.html#method_fromXml" class="">fromXml()</a><br />
+                                                                    <a href="../classes/Xily.Dict.html#method_checkAssoc" class="">checkAssoc()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No private properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                    </section>
+                </div>
+                <aside class="span4 detailsbar">
+                                        
+                    
+                    <dl>
+                        <dt>File</dt>
+                            <dd><a href="../files/dict.php.html"><div class="path-wrapper">dict.php</div></a></dd>
+                                                <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">\Xily</div></dd>
+                                                <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">
+                                                                                                                                                                                                                                                                                                
+                                        <div class="namespace-wrapper"><a href="../classes/Xily.Base.html">\Xily\Base</a></div>
+                                                                                                    <div class="namespace-wrapper">\Xily\Dict</div>
+                            </dd>
+
+                        
+                        
+                        
+                                                                        </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                            <tr>
+                            <th>
+                                author
+                            </th>
+                            <td>
+                                                                    <p>Peter-Christoph Haider (Project Leader) et al. <a href="&#x6d;&#x61;&#x69;&#x6c;&#116;&#111;&#58;&#105;&#110;&#102;o&#x40;&#x78;&#x69;&#x6c;&#x79;&#46;&#105;&#110;&#102;&#111;">&#105;&#110;&#102;o&#x40;&#x78;&#x69;&#x6c;&#x79;&#46;&#105;&#110;&#102;&#111;</a></p>
+
+                                                            </td>
+                        </tr>
+                                            <tr>
+                            <th>
+                                version
+                            </th>
+                            <td>
+                                                                    <p>(2013-11-13)</p>
+
+                                                            </td>
+                        </tr>
+                                            <tr>
+                            <th>
+                                copyright
+                            </th>
+                            <td>
+                                                                    <p>Copyright (c) 2009-2013, Peter-Christoph Haider</p>
+
+                                                            </td>
+                        </tr>
+                                            <tr>
+                            <th>
+                                license
+                            </th>
+                            <td>
+                                                                    <p>http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License</p>
+
+                                                            </td>
+                        </tr>
+                                        </table>
+                </aside>
+            </div>
+
+                        
+                                    <a id="properties" name="properties"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Properties</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_data" name="property_data" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$data</h3>
+                <pre class="signature">$data : array</pre>
+                <p><em></em></p>
+                
+
+
+                                <h4>Type</h4>
+                array
+                &mdash; The main array which is containing the data                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                            
+                                    <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___construct" name="method___construct" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__construct()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__construct(array <span class="argument">$arr</span>) : void</pre>
+                <p><em>Constructor</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$arr</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_merge" name="method_merge" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">merge()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">merge(array <span class="argument">$arr</span>) : void</pre>
+                <p><em>Adds an array to the dataset</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$arr</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_add" name="method_add" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">add()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">add(\Xily\arr <span class="argument">$arr</span>, bool <span class="argument">$keep</span>) : void</pre>
+                <p><em>Only adds additional settings to the data set</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\Xily\arr</td>
+                                <td>$arr</td>
+                                <td>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>bool</td>
+                                <td>$keep</td>
+                                <td><p>Keep current values</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_push" name="method_push" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">push()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">push(string <span class="argument">$value</span>) : void</pre>
+                <p><em>Pushes a new value to the array</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$value</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_addOptions" name="method_addOptions" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">addOptions()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">addOptions(string <span class="argument">$opt</span>, string <span class="argument">$delim</span>, string <span class="argument">$sign</span>) : void</pre>
+                <p><em>Adds an option string to the data set</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$opt</td>
+                                <td><p>Option string ("option1:value1,option2:value2")</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$delim</td>
+                                <td><p>Delimiter for the option statement</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$sign</td>
+                                <td><p>Textual representations of the assignment</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_set" name="method_set" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">set()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">set(string|array <span class="argument">$mxt</span>, string <span class="argument">$value</span>) : void</pre>
+                <p><em>Sets a value for a specified attribute or sets a complete array</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string|array</td>
+                                <td>$mxt</td>
+                                <td><p>Name of the attribute or complete array</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$value</td>
+                                <td><p>Value to be set</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_get" name="method_get" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">get()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">get(string <span class="argument">$attr</span>, string <span class="argument">$type</span>, mixed <span class="argument">$default</span>) : mixed</pre>
+                <p><em>Returns a specified item from the object</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$attr</td>
+                                <td><p>Attribute name</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$type</td>
+                                <td><p>Variable type</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$default</td>
+                                <td><p>Default value</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getFiltered" name="method_getFiltered" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getFiltered()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getFiltered(string <span class="argument">$attr</span>, string <span class="argument">$type</span>, mixed <span class="argument">$default</span>, array <span class="argument">$accept</span>, array <span class="argument">$refuse</span>) : mixed</pre>
+                <p><em>Returns a specified item from the object and applies a filter to the returned value</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$attr</td>
+                                <td><p>Attribute name</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$type</td>
+                                <td><p>Variable type</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$default</td>
+                                <td><p>Default value</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$accept</td>
+                                <td><p>List of all values the variable may have</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$refuse</td>
+                                <td><p>List of all values the variable may not have</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getClear" name="method_getClear" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getClear()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getClear() : array</pre>
+                <p><em>Returns the complete data array of the object</em></p>
+                
+
+
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_has" name="method_has" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">has()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">has(string <span class="argument">$attr</span>) : bool</pre>
+                <p><em>Checks, whether the object has a specified attribute</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$attr</td>
+                                <td><p>Attribute name</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    bool
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_count" name="method_count" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">count()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">count() : int</pre>
+                <p><em>Counts the object&#039;s items</em></p>
+                
+
+
+                
+                
+                                    <h4>Returns</h4>
+                    int
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_erase" name="method_erase" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">erase()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">erase(string <span class="argument">$attr</span>) : void</pre>
+                <p><em>Erases a specified attribute</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$attr</td>
+                                <td><p>Attribute name (If empty, the complete array will be cleared)</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_addCSV" name="method_addCSV" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">addCSV()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">addCSV(string <span class="argument">$csv</span>, string <span class="argument">$delim</span>) : void</pre>
+                <p><em>Adds data from a CSV string</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$csv</td>
+                                <td><p>The CSV string</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$delim</td>
+                                <td><p>Delimiter</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_parseCsv" name="method_parseCsv" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">parseCsv()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">parseCsv(mixed <span class="argument">$csv</span>, mixed <span class="argument">$delim</span>, mixed <span class="argument">$wrapper</span>, mixed <span class="argument">$usetitles</span>) : array</pre>
+                <p><em>Parses a CSV string into an array</em></p>
+                <p><code>
+$csv = Xily\Dict::parseCsv(file_get_contents('data.csv'), ',', '"', true);
+</code></p>
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$csv</td>
+                                <td>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$delim</td>
+                                <td>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$wrapper</td>
+                                <td>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$usetitles</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_implode" name="method_implode" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">implode()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">implode(string <span class="argument">$glue</span>) : string</pre>
+                <p><em>Implodes the array</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$glue</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_insertInto" name="method_insertInto" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">insertInto()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">insertInto(string <span class="argument">$strTemplate</span>, string <span class="argument">$strPatternStart</span>, string <span class="argument">$strPatternEnd</span>)</pre>
+                <p><em>Insert the data into a template string</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$strTemplate</td>
+                                <td>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$strPatternStart</td>
+                                <td>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$strPatternEnd</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_toXml" name="method_toXml" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">toXml()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">toXml(string <span class="argument">$strName</span>, bool <span class="argument">$bolAssoc</span>) : \Xily\Xily\Xml</pre>
+                <p><em>Converts the array data an Xily\Xml object</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$strName</td>
+                                <td><p>Name of the root element</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>bool</td>
+                                <td>$bolAssoc</td>
+                                <td><p>Use the keys of an associative array to create the node titles. Otherwise, use "node"</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    \Xily\Xily\Xml
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_initValue" name="method_initValue" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">initValue()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">initValue(int|float|array|bool|object|string <span class="argument">$mxtValue</span>, string <span class="argument">$strType</span>, int|float|array|bool|object|string <span class="argument">$mxtDefault</span>) : int|float|array|bool|object|string</pre>
+                <p><em>Initialize a variable value</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>int|float|array|bool|object|string</td>
+                                <td>$mxtValue</td>
+                                <td><p>Value to initialize</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$strType</td>
+                                <td><p>Variable type</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>int|float|array|bool|object|string</td>
+                                <td>$mxtDefault</td>
+                                <td><p>Default value</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    int|float|array|bool|object|string
+                                            &mdash; <p>Initialized value</p>
+
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Xily.Base.html"><div class="path-wrapper">\Xily\Base</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_initRequest" name="method_initRequest" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">initRequest()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">initRequest(string <span class="argument">$strKey</span>, mixed <span class="argument">$mxtDefault</span>)</pre>
+                <p><em>Initializes a request variable</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$strKey</td>
+                                <td><p>Name of the variable</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$mxtDefault</td>
+                                <td><p>Default value</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Xily.Base.html"><div class="path-wrapper">\Xily\Base</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_equationBuild" name="method_equationBuild" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">equationBuild()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">equationBuild(string <span class="argument">$strFilter</span>, bool <span class="argument">$bolList</span>) : array</pre>
+                <p><em>Creates an array containing the tree parameters attribute, operator and value to
+express an equation. The method also aims to simplify the operator by narrowing them down to &lt;, &gt;, =, and !</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$strFilter</td>
+                                <td><p>The filter string, e.g "x >= 10"</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>bool</td>
+                                <td>$bolList</td>
+                                <td><p>Returns a list of all equations</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                            &mdash; <p>['attribute', 'operator', 'value']</p>
+
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Xily.Base.html"><div class="path-wrapper">\Xily\Base</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                            <p>Check multiple equations and include equation operators (&amp;&amp;, ||, !)</p>
+
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_equationCheck" name="method_equationCheck" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">equationCheck()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">equationCheck(string <span class="argument">$strValue1</span>, string <span class="argument">$strValue2</span>, string <span class="argument">$strOperator</span>) : bool</pre>
+                <p><em>Checks, if an equation is correct</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$strValue1</td>
+                                <td><p>First parameter</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$strValue2</td>
+                                <td><p>Second parameter</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$strOperator</td>
+                                <td><p>Equation operator (==, !=, &lt;, >, &lt;=, >=)</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    bool
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Xily.Base.html"><div class="path-wrapper">\Xily\Base</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_strStripQuotes" name="method_strStripQuotes" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">strStripQuotes()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">strStripQuotes(string <span class="argument">$strQuote</span>) : string</pre>
+                <p><em>Strips the quote symbols form a string</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$strQuote</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Xily.Base.html"><div class="path-wrapper">\Xily\Base</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_strStripBrackets" name="method_strStripBrackets" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">strStripBrackets()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">strStripBrackets(string <span class="argument">$strQuote</span>) : string</pre>
+                <p><em>Strips the brackets from the beginning and end of a string</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$strQuote</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Xily.Base.html"><div class="path-wrapper">\Xily\Base</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_strStripString" name="method_strStripString" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">strStripString()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">strStripString(string <span class="argument">$strText</span>, string <span class="argument">$strOpen</span>, string <span class="argument">$strClose</span>, bool <span class="argument">$bolStrict</span>) : string</pre>
+                <p><em>Strips defined chars from the beginning and the end of a string</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$strText</td>
+                                <td>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$strOpen</td>
+                                <td>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$strClose</td>
+                                <td>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>bool</td>
+                                <td>$bolStrict</td>
+                                <td><p>Only strip symmetrical strings</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Xily.Base.html"><div class="path-wrapper">\Xily\Base</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_strStripWhitespaces" name="method_strStripWhitespaces" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">strStripWhitespaces()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">strStripWhitespaces(string <span class="argument">$strText</span>) : string</pre>
+                <p><em>Strips all whitespaces from the beginning and end of a string</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$strText</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Xily.Base.html"><div class="path-wrapper">\Xily\Base</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_strStripInline" name="method_strStripInline" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">strStripInline()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">strStripInline(string <span class="argument">$strText</span>, bool <span class="argument">$bolLineBreaks</span>) : string</pre>
+                <p><em>Reduces a paragraph to one single line, removing all linebreaks, tabs and blank spaces</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$strText</td>
+                                <td>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>bool</td>
+                                <td>$bolLineBreaks</td>
+                                <td><p>If set, also linebreaks are removed (otherwise only tabs and blank spaces)</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Xily.Base.html"><div class="path-wrapper">\Xily\Base</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_strShorten" name="method_strShorten" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">strShorten()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">strShorten(string <span class="argument">$strText</span>, int <span class="argument">$numLength</span>, bool <span class="argument">$bolDots</span>, bool <span class="argument">$bolWords</span>) : string</pre>
+                <p><em>Shortens a string to a specified number of chars.</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$strText</td>
+                                <td>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>int</td>
+                                <td>$numLength</td>
+                                <td>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>bool</td>
+                                <td>$bolDots</td>
+                                <td><p>Puts three dots [...] at the end of the shortened string.</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>bool</td>
+                                <td>$bolWords</td>
+                                <td><p>Respect single words when shortening a text.</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Xily.Base.html"><div class="path-wrapper">\Xily\Base</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_strToFloat" name="method_strToFloat" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">strToFloat()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">strToFloat(string <span class="argument">$strNumber</span>, bool <span class="argument">$bolNegative</span>) : float</pre>
+                <p><em>Converts a formated string into a float</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$strNumber</td>
+                                <td><p>The formated number, e.g. "1,293.00 €"</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>bool</td>
+                                <td>$bolNegative</td>
+                                <td><p>Support negative numbers</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    float
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Xily.Base.html"><div class="path-wrapper">\Xily\Base</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_htmlDecode" name="method_htmlDecode" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">htmlDecode()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">htmlDecode(string <span class="argument">$strHTML</span>, bool <span class="argument">$bolBreak</span>) : string</pre>
+                <p><em>Converts a HTML string into a plain text string, decoding existing HTML special chars</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$strHTML</td>
+                                <td>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>bool</td>
+                                <td>$bolBreak</td>
+                                <td><p>Also replace <br /> linebreaks in regular linebreaks "\n"</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Xily.Base.html"><div class="path-wrapper">\Xily\Base</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_htmlEncode" name="method_htmlEncode" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">htmlEncode()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">htmlEncode(string <span class="argument">$strText</span>, string <span class="argument">$bolBreak</span>) : \Xily\unknown</pre>
+                <p><em>Converts a regular string into HTML code, encoding HTML special chars.</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$strText</td>
+                                <td>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$bolBreak</td>
+                                <td><p>If linebreak is true, the function will add <br /> linebreaks</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    \Xily\unknown
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Xily.Base.html"><div class="path-wrapper">\Xily\Base</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_xmlChars" name="method_xmlChars" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">xmlChars()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">xmlChars(string <span class="argument">$strRaw</span>) : string</pre>
+                <p><em>Encodes special XML characters</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$strRaw</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Xily.Base.html"><div class="path-wrapper">\Xily\Base</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_createUID" name="method_createUID" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">createUID()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">createUID() : string</pre>
+                <p><em>Creates a unique identifier</em></p>
+                
+
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Xily.Base.html"><div class="path-wrapper">\Xily\Base</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_fileFormatDir" name="method_fileFormatDir" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">fileFormatDir()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">fileFormatDir(string <span class="argument">$strDirectory</span>, string <span class="argument">$strSlash</span>) : string</pre>
+                <p><em>Makes sure the directory ends with a slash</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$strDirectory</td>
+                                <td><p>The directory</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$strSlash</td>
+                                <td><p>The slash format (default is DIRECTORY_SEPARATOR)</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Xily.Base.html"><div class="path-wrapper">\Xily\Base</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_fileRead" name="method_fileRead" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">fileRead()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">fileRead(string <span class="argument">$strFile</span>) : string|bool</pre>
+                <p><em>Reads the contents of a file to a string</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$strFile</td>
+                                <td><p>The filename</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string|bool
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Xily.Base.html"><div class="path-wrapper">\Xily\Base</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_fileReadByLine" name="method_fileReadByLine" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">fileReadByLine()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">fileReadByLine(string <span class="argument">$strFile</span>, \Xily\stirng <span class="argument">$strFunction</span>) : string</pre>
+                <p><em>Reads the contents of a file to a string line by line
+and optionally calls a function for each line</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$strFile</td>
+                                <td><p>The filename</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>\Xily\stirng</td>
+                                <td>$strFunction</td>
+                                <td><p>Name of the function to be called for each line</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>The file contents</p>
+
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Xily.Base.html"><div class="path-wrapper">\Xily\Base</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_fileWrite" name="method_fileWrite" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">fileWrite()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">fileWrite(string <span class="argument">$strFile</span>, string <span class="argument">$strText</span>, bool <span class="argument">$bolModeAdd</span>) : bool</pre>
+                <p><em>Writes a string to a file</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$strFile</td>
+                                <td><p>The filename</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$strText</td>
+                                <td><p>String to write</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>bool</td>
+                                <td>$bolModeAdd</td>
+                                <td><p>Appends the string at the end of the file</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    bool
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Xily.Base.html"><div class="path-wrapper">\Xily\Base</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_fileRemoveDir" name="method_fileRemoveDir" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">fileRemoveDir()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">fileRemoveDir(string <span class="argument">$strDirectory</span>, bool <span class="argument">$bolEmpty</span>) : bool</pre>
+                <p><em>Recursively removes a directory and the files and subdirectories contained in it</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$strDirectory</td>
+                                <td>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>bool</td>
+                                <td>$bolEmpty</td>
+                                <td><p>Declaration of the directory to be empty</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    bool
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Xily.Base.html"><div class="path-wrapper">\Xily\Base</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_fileCopyDir" name="method_fileCopyDir" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">fileCopyDir()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">fileCopyDir(string <span class="argument">$strDirectory</span>, string <span class="argument">$strDestination</span>, bool <span class="argument">$bolCreate</span>) : bool</pre>
+                <p><em>Recursively copies a directory and the files and subdirectories contained in it</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$strDirectory</td>
+                                <td>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$strDestination</td>
+                                <td>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>bool</td>
+                                <td>$bolCreate</td>
+                                <td><p>This option defines, if the whole directory should be copied or only its contents</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    bool
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Xily.Base.html"><div class="path-wrapper">\Xily\Base</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_fileListDir" name="method_fileListDir" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">fileListDir()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">fileListDir(string <span class="argument">$strDirName</span>, string <span class="argument">$strFiletype</span>) : array</pre>
+                <p><em>Returns an array with the contents of a directory</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$strDirName</td>
+                                <td><p>The directory name</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$strFiletype</td>
+                                <td><p>Filter for certain file extensions</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Xily.Base.html"><div class="path-wrapper">\Xily\Base</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_fileGetExtension" name="method_fileGetExtension" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">fileGetExtension()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">fileGetExtension(string <span class="argument">$strFilename</span>) : string</pre>
+                <p><em>Returns the file extension</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$strFilename</td>
+                                <td><p>Filename</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Xily.Base.html"><div class="path-wrapper">\Xily\Base</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_fileRename" name="method_fileRename" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">fileRename()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">fileRename(string <span class="argument">$strOldFileName</span>, string <span class="argument">$strNewFileName</span>) : bool</pre>
+                <p><em>Renames a file</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$strOldFileName</td>
+                                <td>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$strNewFileName</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    bool
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Xily.Base.html"><div class="path-wrapper">\Xily\Base</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_probe" name="method_probe" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">probe()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">probe(string <span class="argument">$strSource</span>, string <span class="argument">$strMessage</span>, int <span class="argument">$intLevel</span>) : bool</pre>
+                <p><em>Echos a message, if modeDebug is active. This function can be very useful to place status messages
+in your functions, to gain some insights of what your program is doing.</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$strSource</td>
+                                <td><p>The function's name where the probe is placed</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$strMessage</td>
+                                <td><p>The debug message</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>int</td>
+                                <td>$intLevel</td>
+                                <td><p>Priority/Level of the message</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    bool
+                                            &mdash; <p>Returns, whether the probe was echoed</p>
+
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Xily.Base.html"><div class="path-wrapper">\Xily\Base</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getFromPath" name="method_getFromPath" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">getFromPath()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getFromPath(array <span class="argument">$data</span>, string <span class="argument">$path</span>, string <span class="argument">$type</span>, mixed <span class="argument">$default</span>) : mixed</pre>
+                <p><em>Returns a specified item from the object</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$data</td>
+                                <td><p>The data array</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$path</td>
+                                <td><p>Attribute name</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$type</td>
+                                <td><p>Variable type</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$default</td>
+                                <td><p>Default value</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getValue" name="method_getValue" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">getValue()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getValue(array <span class="argument">$data</span>, string <span class="argument">$attr</span>, string <span class="argument">$type</span>, mixed <span class="argument">$default</span>) : mixed</pre>
+                <p><em>Returns a specified item from the object</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$data</td>
+                                <td><p>The data array</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$attr</td>
+                                <td><p>Attribute name</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$type</td>
+                                <td><p>Variable type</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$default</td>
+                                <td><p>Default value</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_fromXml" name="method_fromXml" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">fromXml()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">fromXml(\Xily\Xily\Xml <span class="argument">$xmlNode</span>, array <span class="argument">$mxtData</span>, bool <span class="argument">$bolAssoc</span>) : \Xily\Xily\Xml</pre>
+                <p><em>Converts the array into an Xily\Xml object</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\Xily\Xily\Xml</td>
+                                <td>$xmlNode</td>
+                                <td>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$mxtData</td>
+                                <td>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>bool</td>
+                                <td>$bolAssoc</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    \Xily\Xily\Xml
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_checkAssoc" name="method_checkAssoc" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">checkAssoc()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">checkAssoc(array <span class="argument">$a</span>)</pre>
+                <p><em>Check, if the array is associative</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$a</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">dict.php</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/dict.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                            <li><a href="../namespaces/Xily.html">\Xily</a></li>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="">Errors</a></li>
+                                    <li><a href="">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on November 15th, 2013 at 16:47.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>
