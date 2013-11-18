@@ -129,4 +129,5 @@ $xlyDoc = Bean::create('<?xml version="1.0" encoding="UTF-8"?>
 		</form:field>
 	</form:frame>
 </html>');
+
 echo $xlyDoc->run();

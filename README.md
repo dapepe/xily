@@ -150,6 +150,8 @@ This way it becomes easy for you to develop your applications directly in XML - 
 OpenLaszlo - as the actual coding afford is embedded inside your Xily Bean classes. This way you can focus on factors
 such as design, architecture and usability rather than on the coding process itself.
 
+#### Creating custom Beans ####
+
 Let's create a simple example. Let's say we want to create a simple HTML form. For this example, we will be using
 [Bootstrap CSS 3.0.2](http://getbootstrap.com/css/#forms)
 
@@ -303,16 +305,23 @@ class FormField extends Bean {
 }
 ```
 
-These two classes automatically generate the entire form. You now have reusable
+These two classes automatically generate the entire form. You now have reusable component classes that you can treat just as HTML tags.
 
-All beans a represented by a single file which includes a corresponding `Bean` class. Xily ships with a couple
-of pre-defined beans, which you can alter and modify. Since each of your projects will probably include custom
-bean, it is very easy to include custom directories, for instance
+In order to make it easier for you to work with different Bean libraries, Xily uses _lazy loading_ to include
+the required files while parsing the XML file. You can simply include your bean directories by adding them to the
+`BEAN_DIRS` array of the `Bean` class:
 
 ```php
 \Xily\Bean::$BEAN_DIRS[] = LIB_DIR.'xily/src/beans';
-\Xily\Bean::$BEAN_DIRS[] = LIB_DIR.'common/beans';
+\Xily\Bean::$BEAN_DIRS[] = LIB_DIR.'custombeans';
 ```
+
+To stick with our previous example: For our custom beans `<form:frame/>` and `<form:field/>` we create a directory
+in our `custombeans` directory called `form` and create two files called `frame.php` and `field.php`, each containing
+the corresponding Bean class.
+
+
+#### Working with Xily Data References (XDR) ####
 
 Besides defining custom Beans, once major aspect of are Xily Data References (XDR).
 XDRs enable you to dynamically reference and access data inside your document.
@@ -337,13 +346,13 @@ types of XDRs in order to provide a wide range of access possibilities:
 
 |                XDR                 |                               Description                                |
 | ---------------------------------- | ------------------------------------------------------------------------ |
-| `@{.objectpath}`                   | Evaluates an XML path relative to the application's XML structure        |
-| `@{datapath}`                      | Applies a path to the object's temporary dataset.                        |
-| `@{objectpath->datapath}`          | Selects a local node and applys a datapath to its default dataset        |
-| `@{objectpath->dataset->datapath}` | Selects a local node and applys a datapath to a specific default dataset |
-| `@{object::dataset}`               | Requests the complete dataset of the specified object                    |
-| `@{%global}`                       | References a global variable                                             |
-| `@{%global->datapath}`             | Applies a data path to a global variable                                 |
+| `#{.objectpath}`                   | Evaluates an XML path relative to the application's XML structure        |
+| `#{datapath}`                      | Applies a path to the object's temporary dataset.                        |
+| `#{objectpath->datapath}`          | Selects a local node and applys a datapath to its default dataset        |
+| `#{objectpath->dataset->datapath}` | Selects a local node and applys a datapath to a specific default dataset |
+| `#{object::dataset}`               | Requests the complete dataset of the specified object                    |
+| `#{%global}`                       | References a global variable                                             |
+| `#{%global->datapath}`             | Applies a data path to a global variable                                 |
 
 You can also access PHP's [predefined variables](http://php.net/manual/en/reserved.variables.php):
 
@@ -359,8 +368,6 @@ You can also access PHP's [predefined variables](http://php.net/manual/en/reserv
 | %COOKIE           | Equals PHP's [$_COOKIE](http://www.php.net/manual/en/reserved.variables.cookies.php) variable  — HTTP Cookies                               |
 | %HTTP             | Equals PHP's [$HTTP_RAW_POST_DATA](http://www.php.net/manual/en/reserved.variables.httprawpostdata.php) variable — Raw POST data            |
 |                   |                                                                                                                                             |
-
-You will find examples for each datapath in the sample file `test/test.bean.php`.
 
 
 ### Xily Config ###
