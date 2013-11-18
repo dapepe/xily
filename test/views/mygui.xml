@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view:frame file="./lib/xily/test/views/frame.html">
+	<section name="title">Demo</section>
+	<section name="header">
+	</section>
+	<section name="body">
+		<h1>
+			<str:toupper>Hello world</str:toupper>
+		</h1>
+		<pre _source="%{.open(lib/xily/test/data/recipes.xml):bean}" />
+		<div>Hello <b>World</b>!</div>
+	</section>
+</view:frame>
