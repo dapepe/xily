@@ -232,14 +232,14 @@ class Bean extends Xml {
 	 * @return string|array|Xily\Xml
 	 */
 	public function xdrInsert($strXDR, $mxtData="", $bolStrict=false, $bolReturnEmpty=true) {
-		preg_match_all('/@\{(.*)\}/U', $strXDR, $arrXDRs);
+		preg_match_all('/#\{(.*)\}/U', $strXDR, $arrXDRs);
 		if (sizeof($arrXDRs[1]) > 0)
 			foreach ($arrXDRs[1] as $strSubXDR) {
 				$strResult = $this->xdr($strSubXDR, $mxtData, 1, $bolStrict);
 				if (is_string($strResult) || is_numeric($strResult))
-					$strXDR = preg_replace('/@\{'.preg_quote($strSubXDR, '/').'}/', $strResult, $strXDR);
+					$strXDR = preg_replace('/#\{'.preg_quote($strSubXDR, '/').'}/', $strResult, $strXDR);
 				elseif ($bolReturnEmpty)
-					$strXDR = preg_replace('/@\{'.preg_quote($strSubXDR, '/').'}/', '', $strXDR);
+					$strXDR = preg_replace('/#\{'.preg_quote($strSubXDR, '/').'}/', '', $strXDR);
 			}
 
 			return $strXDR;
@@ -267,7 +267,7 @@ class Bean extends Xml {
 	 */
 	public function xdr($strXDR, $mxtData="", $bolStringOnly=true, $bolStrict=false) {
 		// First, remove all brackets from the Object
-		$strXDR = $this->strStripString($strXDR, '@{', '}', 1);
+		$strXDR = $this->strStripString($strXDR, '#{', '}', 1);
 		// Then recursively insert
 		// TESTING: $this->probe("xdr", "%%% New XDR: ".$strXDR." %%%", 0, 1);
 		// TESTING: $this->probe("xdr", "Only Strings: ".($bolStringOnly?'on':'off'));
