@@ -32,15 +32,14 @@ $source = '<?xml version="1.0" encoding="UTF-8"?>
 $xlyDoc = Bean::create($source);
 echo $xlyDoc->run();
 
-
 // Let's take a look at another exmple
 class FormFrame extends Bean {
 	public function result($xmlData, $intLevel=0) {
 		if ($this->hasAttribute('left')) {
-			if ($xmlData instanceof XML)
+			if ($xmlData instanceof Xml)
 				$xmlData->setAttribute('left', $this->attribute('left'));
 			else
-				$xmlData = new XML('data', null, array('left' => $this->attribute('left')));
+				$xmlData = new Xml('data', null, array('left' => $this->attribute('left')));
 		}
 
 		return '<form class="form-horizontal" role="form"'
@@ -59,7 +58,7 @@ class FormField extends Bean {
 		$widthLeft = 2;
 		if ($this->hasAttribute('left'))
 			$widthLeft = (int) $this->attribute('left');
-		elseif ($xmlData instanceof XML && $xmlData->hasAttribute('left'))
+		elseif ($xmlData instanceof Xml && $xmlData->hasAttribute('left'))
 			$widthLeft = (int) $xmlData->attribute('left');
 
 		$widthRight = 12 - $widthLeft; // Bootstrap's grid system is based on 12 columns

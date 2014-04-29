@@ -20,7 +20,7 @@ class BeanDump extends Bean {
 
 		$mxtData = $this->xdr($this->attribute('source'), $xmlData, 0, 1);
 
-		return '<pre>'.var_dump($mxtData).'</pre>';
+		return '<pre>'.print_r($mxtData, true).'</pre>';
 	}
 }
 
