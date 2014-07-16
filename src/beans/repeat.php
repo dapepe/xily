@@ -33,7 +33,15 @@ class BeanRepeat extends Bean {
 		$strResult = '';
 		if (is_array($mxtData)) {
 			$this->setDataSet($xmlData);
+			$count  = 0;
+			$offset = $this->hasAttribute('offset')? (int) $this->attribute('offset') : 0;
+			$step   = $this->hasAttribute('step') ? (int) $this->attribute('step') : 1;
+			$diff   = $offset % $step;
 			foreach ($mxtData as $key => $value) {
+				$count++;
+				if ($count < $offset || $count % $step != $diff)
+					continue;
+
 				// Build an array for array values
 				if (!$value instanceof XML)
 					$value = array('key' => $key, 'value' => $value);
