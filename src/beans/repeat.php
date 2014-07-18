@@ -35,11 +35,10 @@ class BeanRepeat extends Bean {
 			$this->setDataSet($xmlData);
 			$count  = 0;
 			$offset = $this->hasAttribute('offset')? (int) $this->attribute('offset') : 0;
-			$step   = $this->hasAttribute('step') ? (int) $this->attribute('step') : 1;
-			$diff   = $offset % $step;
+			$step   = $this->hasAttribute('step') ? (int) $this->attribute('step') : 0;
 			foreach ($mxtData as $key => $value) {
 				$count++;
-				if ($count < $offset || $count % $step != $diff)
+				if (!is_int(($count - $offset) / $step))
 					continue;
 
 				// Build an array for array values
