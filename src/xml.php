@@ -683,9 +683,11 @@ class Xml extends Base {
 	 *
 	 * @param string $intValue [value]
 	 * @category iXML
+	 * @return Xml
 	 */
 	public function setIndex($intValue) {
 		$this->intIndex = $intValue;
+		return $this;
 	}
 
 	/**
@@ -694,9 +696,11 @@ class Xml extends Base {
 	 * @param string $strAttribute [key]
 	 * @param string $strValue [value]
 	 * @category iXML
+	 * @return Xml
 	 */
 	public function setAttribute($strAttribute, $strValue) {
 		$this->arrAttributes[$strAttribute] = $strValue;
+		return $this;
 	}
 
 	/**
@@ -704,9 +708,11 @@ class Xml extends Base {
 	 *
 	 * @param string $strValue [n:value]
 	 * @category iXML
+	 * @return Xml
 	 */
 	public function setValue($strValue=null) {
 		$this->strValue = $strValue;
+		return $this;
 	}
 
 	/**
@@ -714,9 +720,11 @@ class Xml extends Base {
 	 *
 	 * @param string $strTag [value]
 	 * @category iXML
+	 * @return Xml
 	 */
 	public function setTag($strTag) {
 		$this->strTag = $strTag;
+		return $this;
 	}
 
 	/**
@@ -724,21 +732,26 @@ class Xml extends Base {
 	 *
 	 * @param object $xmlRoot The new root object
 	 * @param bool $bolPersistent If $bolPersistent=true, the object passes the new parent object to all ancestors
+	 * @return Xml
 	 */
 	public function setRoot($xmlRoot, $bolPersistent=true) {
 		$this->objRoot = $xmlRoot;
 		if ($bolPersistent)
 			foreach ($this->arrChildren as $child)
 				$child->setRoot($xmlRoot, 0, $bolPersistent);
+
+		return $this;
 	}
 
 	/**
 	 * Sets the parent object for a node or its children
 	 *
 	 * @param object $xmlParent The new parent object
+	 * @return Xml
 	 */
 	public function setParent($xmlParent) {
 		$this->objParent = $xmlParent;
+		return $this;
 	}
 
 	/**
@@ -747,10 +760,13 @@ class Xml extends Base {
 	 * @param integer $intIndex Index of the CDATA element [index]
 	 * @param string $strValue New Value of the CDATA element [value]
 	 * @category iXML
+	 * @return Xml
 	 */
 	public function setCdata($intIndex, $strValue) {
 		if ($intIndex < sizeof($this->arrCdata))
 			$this->arrCdata[$intIndex] = $strValue;
+
+		return $this;
 	}
 
 	/**
@@ -760,43 +776,42 @@ class Xml extends Base {
 	 * @param int $intIndex The desired position of the new CDATA element (overrides $intContentIndex!)
 	 * @param int $intContentIndex The desired position within the content stream
 	 * @see Xml::addChild
+	 * @return Xml
 	 */
 	public function addCdata($strValue, $intIndex=null, $intContentIndex=null) {
-		if (is_string($strValue)) {
-			if (isset($intIndex) && $intIndex < sizeof($this->arrCdata)) {
-				for ($i = sizeof($this->arrCdata) ; $i > $intIndex ; $i--)
-					$this->arrCdata[$i] = $this->arrCdata[$i-1];
+		if (isset($intIndex) && $intIndex < sizeof($this->arrCdata)) {
+			for ($i = sizeof($this->arrCdata) ; $i > $intIndex ; $i--)
+				$this->arrCdata[$i] = $this->arrCdata[$i-1];
 
-				$this->arrCdata[$intIndex] = $strValue;
-				$intContentIndex = is_null($intContentIndex)?$this->getContentIndex($intIndex, 0):$intContentIndex;
+			$this->arrCdata[$intIndex] = $strValue;
+			$intContentIndex = is_null($intContentIndex)?$this->getContentIndex($intIndex, 0):$intContentIndex;
+		} else {
+			// If there is no content so far, the first CDATA entry is the node's value
+			if (sizeof($this->arrContent) > 0) {
+				$this->arrCdata[] = $strValue;
+				// DEBUG: Nicht eher "sizeof($this->arrContent) ???
+				$intIndex = is_null($intContentIndex) ? sizeof($this->arrChildren) : $this->getContentTarget($intContentIndex);
 			} else {
-				// If there is no content so far, the first CDATA entry is the node's value
-				if (sizeof($this->arrContent) > 0) {
-					$this->arrCdata[] = $strValue;
-					// DEBUG: Nicht eher "sizeof($this->arrContent) ???
-					$intIndex = is_null($intContentIndex) ? sizeof($this->arrChildren) : $this->getContentTarget($intContentIndex);
-				} else {
-					$this->strValue .= $strValue;
-					return true;
-				}
+				$this->strValue .= $strValue;
+				return true;
 			}
-			if (isset($intContentIndex)) {
-				if ($intContentIndex > 0) {
-					// Check, if the desired content index is valid; The content index is valid,
-					// if it's smaller than the currently assigned content index.
-					if ($intCheckIndex = $this->getContentIndex($intIndex)) {
-						if ($intCheckIndex < $intContentIndex-1)
-							throw new Exception('Content index is not valid. Select an index > '.$intCheckIndex);
-					}
-				} else {
-					// If the ContentIndex is negative, the content index is forced without prior checking
-					$intContentIndex = $intContentIndex * (-1);
+		}
+		if (isset($intContentIndex)) {
+			if ($intContentIndex > 0) {
+				// Check, if the desired content index is valid; The content index is valid,
+				// if it's smaller than the currently assigned content index.
+				if ($intCheckIndex = $this->getContentIndex($intIndex)) {
+					if ($intCheckIndex < $intContentIndex-1)
+						throw new Exception('Content index is not valid. Select an index > '.$intCheckIndex);
 				}
+			} else {
+				// If the ContentIndex is negative, the content index is forced without prior checking
+				$intContentIndex = $intContentIndex * (-1);
 			}
-			$this->addContentEntry($intIndex, 0, $intContentIndex);
-			return true;
-		} else
-			throw new Exception('Could not add CDATA section. Function requires string.');
+		}
+		$this->addContentEntry($intIndex, 0, $intContentIndex);
+
+		return $this;
 	}
 
 	/**
@@ -826,37 +841,39 @@ class Xml extends Base {
 	 * @category iXML
 	 */
 	public function addChild($xmlNode, $intIndex=null, $intContentIndex=null) {
-		if ($xmlNode instanceof Xml) {
-			$xmlNode->setParent($this);
-			$xmlNode->setRoot($this->root());
-			if (!is_null($intIndex) && $intIndex < sizeof($this->arrChildren)) {
-				for ($i = sizeof($this->arrChildren) ; $i > $intIndex ; $i--) {
-					$this->arrChildren[$i] = $this->arrChildren[$i-1];
-					$this->arrChildren[$i]->setIndex($i);
-				}
-				$this->arrChildren[$intIndex] = $xmlNode;
-				$this->arrChildren[$intIndex]->setIndex($intIndex);
-				$intContentIndex = is_null($intContentIndex) ? $this->getContentIndex($intIndex) : $intContentIndex;
-			} else  {
-				// Check if the XML tag should be inserted at a specific position of the content stream
-				$intIndex = $intContentIndex ? $this->getContentTarget($intContentIndex) : sizeof($this->arrChildren);
-				$this->arrChildren[] = $xmlNode;
-			}
-			if ($intContentIndex) {
-				if ($intContentIndex > 0) {
-					// Check, if the desired content index is valid
-					if ($intCheckIndex = $this->getContentIndex($intIndex))
-						if ($intCheckIndex < $intContentIndex-1)
-							throw new Exception('Content index is not valid. Select an index > '.$intCheckIndex);
-				} else {
-					// If the ContentIndex is negative, the content index is forces without prior checking
-					$intContentIndex = $intContentIndex * (-1);
-				}
-			}
-			$this->addContentEntry($intIndex, 1, $intContentIndex);
-			return $xmlNode;
-		} else
+		if (!($xmlNode instanceof Xml))
 			throw new Exception('Could not add XML node. Function requires a Xml object.');
+
+		$xmlNode->detach();
+		$xmlNode->setParent($this);
+		$xmlNode->setRoot($this->root());
+		if (!is_null($intIndex) && $intIndex < sizeof($this->arrChildren)) {
+			for ($i = sizeof($this->arrChildren) ; $i > $intIndex ; $i--) {
+				$this->arrChildren[$i] = $this->arrChildren[$i-1];
+				$this->arrChildren[$i]->setIndex($i);
+			}
+			$this->arrChildren[$intIndex] = $xmlNode;
+			$this->arrChildren[$intIndex]->setIndex($intIndex);
+			$intContentIndex = is_null($intContentIndex) ? $this->getContentIndex($intIndex) : $intContentIndex;
+		} else  {
+			// Check if the XML tag should be inserted at a specific position of the content stream
+			$intIndex = $intContentIndex ? $this->getContentTarget($intContentIndex) : sizeof($this->arrChildren);
+			$this->arrChildren[] = $xmlNode;
+		}
+		if ($intContentIndex) {
+			if ($intContentIndex > 0) {
+				// Check, if the desired content index is valid
+				if ($intCheckIndex = $this->getContentIndex($intIndex))
+					if ($intCheckIndex < $intContentIndex-1)
+						throw new Exception('Content index is not valid. Select an index > '.$intCheckIndex);
+			} else {
+				// If the ContentIndex is negative, the content index is forces without prior checking
+				$intContentIndex = $intContentIndex * (-1);
+			}
+		}
+		$this->addContentEntry($intIndex, 1, $intContentIndex);
+
+		return $this;
 	}
 
 	/**
@@ -864,22 +881,22 @@ class Xml extends Base {
 	 *
 	 * @param array $arrChildren Array containing the XML elements [children]
 	 * @param int $intIndex Target index of the child nodes [n:index]
-	 * @return bool
+	 * @return Xml
 	 * @category iXML
 	 */
 	public function addChildren($arrChildren, $intIndex=null) {
-		if (is_array($arrChildren)) {
-			foreach ($arrChildren as $child) {
-				if ($child instanceof Xml) {
-					$this->addChild($child, $intIndex);
-					if (is_numeric($intIndex))
-						$intIndex++;
-				} else
-					throw new Exception('Found invalid datatype among array values. Xml is expected.');
-			}
-			return true;
-		} else
+		if (!is_array($arrChildren))
 			throw new Exception('Invalid data type. Array expected.');
+
+		foreach ($arrChildren as $child) {
+			if ($child instanceof Xml) {
+				$this->addChild($child, $intIndex);
+				if (is_numeric($intIndex))
+					$intIndex++;
+			} else
+				throw new Exception('Found invalid datatype among array values. Xml is expected.');
+		}
+		return $this;
 	}
 
 	/**
@@ -887,6 +904,7 @@ class Xml extends Base {
 	 *
 	 * @param Xml|string $mxtNode The content node
 	 * @param int $intIndex The sequence index
+	 * @return bool
 	 */
 	public function addContent($mxtNode, $intIndex=null) {
 		if (is_null($intIndex)) {
@@ -1409,8 +1427,41 @@ class Xml extends Base {
 	 */
 	public function reindex() {
 		$count = sizeof($this->arrChildren);
+		$this->arrChildren = array_values($this->arrChildren);
 	    for ($i = 0 ; $i < $count ; $i++)
 			$this->arrChildren[$i]->setIndex($i);
+	}
+
+	/**
+	 * Removes the current node from the parent element (without terminating the node)
+	 *
+	 * @return Xml
+	 */
+	public function detach() {
+		if (is_null($this->objParent))
+			return $this;
+
+		$this->objParent->detachChild($this);
+		return $this;
+	}
+
+	/**
+	 * Detach the specified child form the document tree (without terminating the node)
+	 *
+	 * @param Xml|int $mxtChild Either the child object or index
+	 * @return Xml
+	 */
+	public function detachChild($mxtChild) {
+		if ($mxtChild instanceof Xml)
+			$mxtChild = array_search($mxtChild, $this->arrChildren);
+
+		if (is_int($mxtChild) && isset($this->arrChildren[$mxtChild])) {
+			unset($this->arrChildren[$mxtChild]);
+
+			$this->reindex();
+		}
+
+		return $this;
 	}
 
 	// ============= Inserting functions =============
