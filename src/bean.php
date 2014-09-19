@@ -226,10 +226,10 @@ class Bean extends Xml {
 	 * This function evaluates and inserts multiple XDRs into a string.
 	 *
 	 * @param string $strXDR The string containing the XDRs or an XDR itself
-	 * @param string|array|Xily\Xml $mxtData Temporary dataset
+	 * @param string|array|Xml $mxtData Temporary dataset
 	 * @param bool $bolStrict If strict mode is of, the function will try to convert unfitting object to strings (e.g. XML files)
 	 * @param bool $bolReturnEmpty If true (default) the function will replace and invalid XDR with an empty string
-	 * @return string|array|Xily\Xml
+	 * @return string|array|Xml
 	 */
 	public function xdrInsert($strXDR, $mxtData="", $bolStrict=false, $bolReturnEmpty=true) {
 		preg_match_all('/#\{(.*)\}/U', $strXDR, $arrXDRs);
@@ -260,10 +260,10 @@ class Bean extends Xml {
 	 * {datapath}
 	 *
 	 * @param string $strXDR The XDR string
-	 * @param string|array|Xily\Xml $mxtData Temporary dataset
+	 * @param string|array|Xml $mxtData Temporary dataset
 	 * @param bool $bolStringOnly If true, the function will only return results of type string
 	 * @param bool $bolStrict If strict mode is off, the function will try to convert unfitting object to strings (e.g. XML files)
-	 * @return string|array|Xily\Xml|mixed
+	 * @return string|array|Xml|mixed
 	 */
 	public function xdr($strXDR, $mxtData="", $bolStringOnly=true, $bolStrict=false) {
 		// First, remove all brackets from the Object
@@ -288,6 +288,8 @@ class Bean extends Xml {
 			if ($mxtObject = $this->xdrRetriveObject($arrXDR[1])) {
 				$mxtDataset = $mxtObject->dataset($arrXDR[2]);
 				if (is_null($mxtDataset)) {
+					if (!$bolStrict)
+						return '';
 					throw new Exception('The required dataset "'.$arrXDR[2].'" cannot be supplied by the object.');
 				} else {
 					if ($bolStringOnly && !$bolStrict) {
@@ -380,7 +382,7 @@ class Bean extends Xml {
 	 * @param string $strObject The object path or ID of the node
 	 * @param bool $bolStringOnly If true, the function will only return results of type string
 	 * @param bool $bolStrict If strict mode is of, the function will try to convert unfitting object to strings (e.g. XML files)
-	 * @return string|array|Xily\Xml|mixed
+	 * @return string|array|Xml|mixed
 	 */
 	private function xdrRetriveObject($strObject, $bolStringOnly=false, $bolStrict=false) {
 		// TESTING: $this->probe('xdrRetriveObject', "STEP1: Retrieving Object: ".$strObject, 4);
@@ -461,10 +463,10 @@ class Bean extends Xml {
 	 * This function evaluates a datapath relativ to the given dataset.
 	 *
 	 * @param string $strDataPath The XML data path
-	 * @param Xily\Xml $mxtDataset The dataset on which the datapath should be applied
+	 * @param Xml $mxtDataset The dataset on which the datapath should be applied
 	 * @param bool $bolStringOnly If true, the function will only return results of type string
 	 * @param bool $bolStrict If strict mode is of, the function will try to convert unfitting object to strings (e.g. XML files)
-	 * @return string|array|Xily\Xml|mixed
+	 * @return string|array|Xml|mixed
 	 */
 	private function xdrRetriveData($strDataPath, $mxtDataset, $bolStringOnly=true, $bolStrict=false) {
 		// TESTING: $this->probe('xdrRetriveData', "STEP3: Evaluating datapath", 7);
@@ -599,7 +601,7 @@ class Bean extends Xml {
 	 * Sets the value for the $mxtDataset variable.
 	 * Caution: existing data will be overwritten!
 	 *
-	 * @param string|array|Xily\Xml $mxtDataset [data]
+	 * @param string|array|Xml $mxtDataset [data]
 	 * @param string $strDataset Name of the dataset. [name]
 	 * @return void
 	 * @category iXML
@@ -636,7 +638,7 @@ class Bean extends Xml {
 	 * Returns a specified dataset
 	 *
 	 * @param string $strDataset Name of the dataset. [name]
-	 * @return string|array|Xily\Xml
+	 * @return string|array|Xml
 	 * @category iXML
 	 */
 	public function dataset($strDataset="default") {
