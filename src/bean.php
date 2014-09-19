@@ -313,7 +313,8 @@ class Bean extends Xml {
 				return $arrVar;
 
 			$dict = new Dict($arrVar);
-			return $dict->getFromPath($strPath);
+			// @todo: Implement filter queries for Xily\Dict
+			// return $dict->getFromPath($strPath);
 		} elseif (preg_match_all('/^.(open|post|get)\(((?:\"(.*)\")|(?:\'(.*)\')|(.*))\)((?:->(.*)->(.*))|(?:->(.*)))?$/i', $strXDR, $arrBase, PREG_SET_ORDER)) {
 			// -----> CASE: {.external}, {.external->type}, {.external->type->path}
 			$arrBase = array_pop($arrBase);
@@ -571,7 +572,7 @@ class Bean extends Xml {
 			case '%cookie':
 				return $_COOKIE;
 			case '%http':
-				return $HTTP_RAW_POST_DATA;
+				return file_get_contents("php://input");
 			default:
 				throw new Exception('Unknown variable name: '.$strVariable);
 

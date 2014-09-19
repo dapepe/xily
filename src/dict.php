@@ -131,7 +131,7 @@ class Dict extends Base {
 			return $this->getValue($data, $path[0]['key'], $type, $default);
 
 		$crump = array_shift($path);
-		// @todo: Implement filter queries
+		// @todo: Implement filter queries for Xily\Dict
 
 		return isset($data[$crump['key']]) ? $this->getFromPath($data[$crump['key']], $path, $type, $default) : $default;
 	}
