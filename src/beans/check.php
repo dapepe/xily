@@ -21,7 +21,7 @@ class BeanCheck extends Bean {
 		if (!$this->attribute('value'))
 			throw new Exception('No check value set for check. Nothing to do.');
 
-		$mxtResult = $this->xdr($this->attribute('value'), $xmlData, 0, 1, 1);
+		$mxtResult = $this->xdr($this->attribute('value'), $xmlData, 0, 0);
 
 		if ($mxtResult) {
 			$xmlTrue = $this->child('true');
