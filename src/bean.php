@@ -313,8 +313,7 @@ class Bean extends Xml {
 				return $arrVar;
 
 			$dict = new Dict($arrVar);
-			// @todo: Implement filter queries for Xily\Dict
-			// return $dict->getFromPath($strPath);
+			return $dict->get($strPath, false);
 		} elseif (preg_match_all('/^.(open|post|get)\(((?:\"(.*)\")|(?:\'(.*)\')|(.*))\)((?:->(.*)->(.*))|(?:->(.*)))?$/i', $strXDR, $arrBase, PREG_SET_ORDER)) {
 			// -----> CASE: {.external}, {.external->type}, {.external->type->path}
 			$arrBase = array_pop($arrBase);
