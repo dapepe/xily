@@ -1,0 +1,20 @@
+{
+  "name": "zeyon/xily",
+  "description": "Xily is a leight-weight PHP framework to develop XML-based applications.",
+  "license": "LGPL",
+  "require": {
+    "php": ">=5.4.0"
+  },
+  "authors": [
+    {
+      "name": "Zeyon Technologies Inc.",
+      "email": "code@zeyon.net",
+      "homepage": "https://www.zeyos.com"
+    },
+	{
+      "name": "Peter Haider",
+      "email": "peter.haider@zeyon.net",
+      "homepage": "https://www.about.me/peterhaider"
+    }
+  ]
+}
