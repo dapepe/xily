@@ -279,15 +279,15 @@ class Xml extends Base {
 		$arrCurrent = array_shift($mxtPath);
 		$arrFilter = $this->buildFilter($arrCurrent, 1);
 
-		$this->probe('getNodesByPath', 'Filter: '.json_encode($arrFilter));
+		// TESTING:  $this->probe('getNodesByPath', 'Filter: '.json_encode($arrFilter));
 
 		// Get all children with mathing filter settings
 		$xlsChildren = $this->children($arrFilter['tag'], $arrFilter['index'], $arrFilter['value'], $arrFilter['attributes'], $arrFilter['path']);
 
 		if ($xlsChildren) {
-			$this->probe('getNodesByPath', sizeof($xlsChildren).' child(ren) found', 3);
+			// TESTING:  $this->probe('getNodesByPath', sizeof($xlsChildren).' child(ren) found', 3);
 			if ($mxtPath) {
-				$this->probe('getNodesByPath', 'There are sill '.sizeof($mxtPath).' elements in the path.', 4);
+				// TESTING:  $this->probe('getNodesByPath', 'There are sill '.sizeof($mxtPath).' elements in the path.', 4);
 				$xlsResult = array();
 				foreach ($xlsChildren as $xmlChild) {
 					$xlsGrandchildren = $xmlChild->getNodesByPath($mxtPath);
@@ -296,7 +296,7 @@ class Xml extends Base {
 				}
 				return $xlsResult;
 			} else
-				$this->probe('getNodesByPath', 'Path finished. Returning the children', 5);
+				// TESTING:  $this->probe('getNodesByPath', 'Path finished. Returning the children', 5);
 		}
 		return $xlsChildren;
 	}
@@ -482,7 +482,7 @@ class Xml extends Base {
 	 * @category iXML
 	 */
 	public function children($mxtTag=null, $mxtIndex=null, $mxtValue=null, $arrAttributes=array(), $arrPath=array()) {
-		$this->probe('children', 'Getting children: $mxtTag="'.$mxtTag.'", $mxtIndex="'.$mxtIndex.'", $mxtValue="'.$mxtValue.'"', 1, $arrAttributes);
+		// TESTING:  $this->probe('children', 'Getting children: $mxtTag="'.$mxtTag.'", $mxtIndex="'.$mxtIndex.'", $mxtValue="'.$mxtValue.'"', 1, $arrAttributes);
 
 		$arrChildren = array();
 		foreach ($this->arrChildren as $xmlChild) {
