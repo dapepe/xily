@@ -295,8 +295,9 @@ class Xml extends Base {
 						$xlsResult = array_merge($xlsResult, $xlsGrandchildren);
 				}
 				return $xlsResult;
-			} else
-				// TESTING:  $this->probe('getNodesByPath', 'Path finished. Returning the children', 5);
+			// TESTING: } else {
+			// TESTING:  $this->probe('getNodesByPath', 'Path finished. Returning the children', 5);
+			}
 		}
 		return $xlsChildren;
 	}
