@@ -513,10 +513,14 @@ class Xml extends Base {
 						$strPath = implode(".", $arrPath);
 					}
 
+					$subPass = false;
 					foreach ($xmlChild->getNodesByPath($strPath) as $xmlNode) {
-						if (!$bolPass = $this->equationCheck($strAttribute ? $xmlNode->attribute($strAttribute) : $xmlNode->value(), $arrFilter[1], $arrFilter[2]))
+						if ($this->equationCheck($strAttribute ? $xmlNode->attribute($strAttribute) : $xmlNode->value(), $arrFilter[1], $arrFilter[2]))
+							$subPass = true;
 							break;
 					}
+					if (!$subPass)
+						$bolPass = false;
 					// if (!$bolPass = $this->equationCheck($xmlChild->trace($arrFilter[0]), $arrFilter[1], $arrFilter[2]))
 				}
 
