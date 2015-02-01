@@ -57,6 +57,7 @@ class Bean extends Xml {
 	private function includeNode($addDirs, $strParserFile, $strParserClass) {
 		if (class_exists('\Xily\\'.$strParserClass))
 			return '\Xily\\'.$strParserClass;
+
 		foreach ($addDirs as $strDir) {
 			if (file_exists($this->fileFormatDir($strDir).$strParserFile)) {
 				include_once($this->fileFormatDir($strDir).$strParserFile);
@@ -65,6 +66,14 @@ class Bean extends Xml {
 				}
 			}
 		}
+
+		if (stream_resolve_include_path($strParserFile)) {
+			include_once($strParserFile);
+			if (class_exists('\Xily\\'.$strParserClass)) {
+				return '\Xily\\'.$strParserClass;
+			}
+		}
+
 		return false;
 	}
 
