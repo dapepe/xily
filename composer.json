@@ -11,10 +11,15 @@
       "email": "code@zeyon.net",
       "homepage": "https://www.zeyos.com"
     },
-	{
+    {
       "name": "Peter Haider",
       "email": "peter.haider@zeyon.net",
       "homepage": "https://www.about.me/peterhaider"
     }
-  ]
+  ],
+  "autoload": {
+    "psr-4": {
+      "Xily\\": "src/"
+    }
+  }
 }
