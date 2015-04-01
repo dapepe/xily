@@ -495,7 +495,7 @@ class Xml extends Base {
 				// Check the attributes
 				$bolPass = true;
 
-				if ( $arrAttributes === null )
+				if ($arrAttributes === null)
 					$arrAttributes = array();
 
 				foreach ($arrAttributes as $attribute => $arrFilter) {
@@ -504,22 +504,25 @@ class Xml extends Base {
 					if (!$bolPass = $this->checkProperty($xmlChild->attribute($attribute), $arrFilter))
 						break;
 				}
+
 				foreach ($arrPath as $arrFilter) {
 					// Check, if the query is referring to an attribute or a node value
 					$strPath = $arrFilter[0];
 					$strAttribute = false;
-					$arrPath = explode(".", $strPath);
-					if (substr($arrPath[sizeof($arrPath)-1], 0, 1) == "@") {
-						$strAttribute = substr(array_pop($arrPath), 1);
-						$strPath = implode(".", $arrPath);
+					$arrCrumps = explode(".", $strPath);
+					if (substr($arrCrumps[sizeof($arrCrumps)-1], 0, 1) == "@") {
+						$strAttribute = substr(array_pop($arrCrumps), 1);
+						$strPath = implode(".", $arrCrumps);
 					}
 
 					$subPass = false;
 					foreach ($xmlChild->getNodesByPath($strPath) as $xmlNode) {
-						if ($this->equationCheck($strAttribute ? $xmlNode->attribute($strAttribute) : $xmlNode->value(), $arrFilter[1], $arrFilter[2]))
+						if ($this->equationCheck($strAttribute ? $xmlNode->attribute($strAttribute) : $xmlNode->value(), $arrFilter[1], $arrFilter[2])) {
 							$subPass = true;
 							break;
+						}
 					}
+
 					if (!$subPass)
 						$bolPass = false;
 					// if (!$bolPass = $this->equationCheck($xmlChild->trace($arrFilter[0]), $arrFilter[1], $arrFilter[2]))
