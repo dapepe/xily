@@ -1553,11 +1553,11 @@ class Xml extends Base {
 
 				if ($intStructure == 0)
 					$strContent = $this->strStripInline($strContent);
-				elseif ($intStructure == 2 && strpos($strContent, "\n") !== false) {
-					$arrContent = explode("\n", $strContent);
+				elseif ($intStructure == 2 && strpos($strContent, "\r\n") !== false) {
+					$arrContent = explode("\r\n", $strContent);
 					$strContent = '';
 					foreach ($arrContent as $strLine)
-						$strContent .= "\n".$strTab."\t".trim($strLine);
+						$strContent .= "\r\n".$strTab."\t".trim($strLine);
 					$strContent = trim($strContent);
 				}
 
@@ -1566,7 +1566,7 @@ class Xml extends Base {
 
 				$strString .= $strContent;
 			} else {
-				if ($intStructure > 0) $strString .= "\n";
+				if ($intStructure > 0) $strString .= "\r\n";
 				foreach ($this->arrChildren as $child)
 					$strString .= $child->toString($intStructure, $intEncode, $numLevel+1);
 				if ($intStructure > 0) $strString .= $strTab;
@@ -1579,7 +1579,7 @@ class Xml extends Base {
 				$strString .= " />";
 		}
 		if ($intStructure > 0)
-			$strString .= "\n";
+			$strString .= "\r\n";
 		return $strString;
 	}
 
