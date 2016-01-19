@@ -453,8 +453,6 @@ If you’re up to it – I am looking forward to hearing from you! Simply drop m
 License
 -------
 
-![Zeyon](http://www.zeyon.net/assets/img/frame/headerlogo.png)
-
-Copyright (C) 2008 - 2013 [Zeyon Technologies Inc.](http://www.zeyon.net)
+Copyright (C) 2008-2016 Peter-Christoph Haider
 
 This work is licensed under the GNU Lesser General Public License (LGPL) which should be included with this software. You may also get a copy of the GNU Lesser General Public License from [http://www.gnu.org/licenses/lgpl.txt](http://www.gnu.org/licenses/lgpl.txt).
