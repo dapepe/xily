@@ -38,7 +38,7 @@ class BeanRepeat extends Bean {
 			$step   = $this->hasAttribute('step') ? (int) $this->attribute('step') : 1;
 			foreach ($mxtData as $key => $value) {
 				$count++;
-				if (!is_int(($count - $offset) / $step))
+				if (($count - $offset) / $step == 0)
 					continue;
 
 				// Build an array for array values
