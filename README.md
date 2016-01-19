@@ -9,7 +9,7 @@ Xily is a leight-weight PHP framework to develop XML-based applications. The fra
 A bit of history
 ----------------
 
-Xily has been developed by [Peter Haider](https://github.com/dapepe) at [Zeyon](http://www.zeyon.net). The development started in 2008 when the team was in need for a framework to develop websites and portals. At the time we were looking at a lot of XML-based based templating systems such as Adobe ColdFusion, Open Laszlo or Adobe Flex. The approach to use XML to describe part of the the front-end really appealed to us and we figured that we would like to have something similar for PHP. And since every project might have different requirements it would be nice to extend the XML engine with new behaviour and tags.
+Xily has been developed by [Peter Haider](https://github.com/dapepe) at [ZeyOS](http://www.zeyos.com). The development started in 2008 when the team was in need for a framework to develop websites and portals. At the time we were looking at a lot of XML-based based templating systems such as Adobe ColdFusion, Open Laszlo or Adobe Flex. The approach to use XML to describe part of the the front-end really appealed to us and we figured that we would like to have something similar for PHP. And since every project might have different requirements it would be nice to extend the XML engine with new behaviour and tags.
 
 The result of all this was Xily, a Framework which enabled us to (a.) process XML documents in PHP and (b.) to develop completely XML-driven applications and websites, by simply encapsulating complex objects and program logic in single objects called Xily Beans.
 
