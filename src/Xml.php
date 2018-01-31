@@ -40,6 +40,8 @@ class Xml extends Base {
 	public $xmlResult;
 	/** @var Array List of tags that should be displayed as open, even if the have no value */
 	public static $OPEN_TAGS = array('a', 'u', 'i', 'label', 'b', 'div', 'iframe', 'textarea', 'script', 'span', 'ul', 'li', 'section', 'select');
+	/** @var Bool Keep all tags open, as oppose to auto-closing tags */
+	public $bolCloseTags = true;
 
 	/**
 	 * Constructor
@@ -1525,7 +1527,7 @@ class Xml extends Base {
 			$arrKeys = array_keys($this->arrAttributes);
 			$arrAttr = array();
 			for ($z = 0 ; $z < sizeof($arrKeys) ; $z++)
-				$arrAttr[] = $arrKeys[$z]."=\"".$this->xmlChars($this->arrAttributes[$arrKeys[$z]])."\"";
+				$arrAttr[] = $arrKeys[$z]."=\"".($intEncode != 0 ? $this->xmlChars($this->arrAttributes[$arrKeys[$z]]) : $this->arrAttributes[$arrKeys[$z]])."\"";
 			$strString .= implode(' ', $arrAttr);
 		}
 		if ($this->hasContent()) {
@@ -1573,7 +1575,7 @@ class Xml extends Base {
 			}
 			$strString .= '</'.$this->strTag.'>';
 		} else {
-			if (in_array($this->strTag, self::$OPEN_TAGS))
+			if (in_array($this->strTag, self::$OPEN_TAGS) || $this->bolCloseTags)
 				$strString .= '></'.$this->strTag.'>';
 			else
 				$strString .= " />";
@@ -1606,7 +1608,7 @@ class Xml extends Base {
 			}
 		}
 
-		if ($this->strValue || in_array($this->tag(), self::$OPEN_TAGS))
+		if ($this->strValue || in_array($this->tag(), self::$OPEN_TAGS) || $this->bolCloseTags)
 			$strString .= ">".$this->xmlChars($this->strStripInline($this->strValue))."</".$this->strTag.">";
 		else
 			$strString .= " />";
